@@ -1,0 +1,308 @@
+/* glabal styles */
+*,::before,::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --mainColor: #0af;
+    --secondColor: #f6f6f6;
+    --grayColor: #999;
+    --blackColor: #333;
+}
+body,html {
+    overflow-x: hidden;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'cairo','sans-serif';
+}
+a {
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+.container {
+    padding: 0 15px;
+    margin: 0 auto;
+}
+@media(min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media(min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media(min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+/* end global styles */
+
+
+/* start header */
+.container {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    grid-template-rows: repeat(6, auto);
+}
+.logo i {
+    font-size: 27px;
+    color: #fff;
+}
+.logo h2 {
+    display: inline-block;
+    margin-left: 7px;
+}
+.header-container {
+    grid-area: 1 / 1 / span 1 / span 8;
+    display: grid;
+}
+header {
+    background-color: var(--mainColor);
+}
+.dashboard {
+    grid-area: 2 / 1 / span 5 / span 1;
+}
+main {
+    grid-area: 2 / 2 / span 5 / span 6;
+}
+.user-progress {
+    grid-area: 2 / 8 / span 5 / span 1;
+}
+.header-container {
+    height: 65px;
+}
+.header-container .search {
+    position: relative;
+}
+.header-container .search input {
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        padding: 8px 10px;
+        width: 350px;
+        background-color: var(--secondColor);
+        transition: background-color 0.3s ease-in-out;
+}
+.header-container .search input:hover {
+    background-color: #e8e8e8;
+}
+.header-container .search i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: var(--grayColor);
+}
+
+
+/* start dashboard */
+.main,.dashboard, .user-progress {
+    padding-top: 60px;
+}
+.user-container > div:nth-child(2) {
+    margin-top: 20px;
+    padding: 0;
+}
+.log-out {
+    padding: 5px 10px;
+    background-color: var(--secondColor);
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 5px;
+}
+h2 {
+    color: #fff;
+}
+.log-out:hover {
+    background-color: var(--blackColor);
+}
+.log-out:hover i {
+    color: #fff;
+}
+.log-out i {
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.logo {
+    grid-area: 1/1/span 1/span 1;
+    display: flex;
+    align-items: center;
+}
+.header-contenu {
+    grid-area: 1/2/span 1/span 7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard nav li {
+    padding: 10px;
+    position: relative;
+    margin: 10px 0;
+    display: flex;
+}
+.dashboard nav li a {
+    text-transform: capitalize;
+    color: var(--blackColor);
+    margin-left: 5px;
+}
+.dashboard nav li::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    z-index: -1;
+    background-color: var(--mainColor);
+    transition: transform 0.5s ease-in-out;
+    border-radius: 12px;
+}
+.dashboard nav li:not(.active)::after {
+    transform: scaleX(0);
+}
+.dashboard nav li.active::after {
+    transform: scaleX(100%);
+}
+.dashboard nav li.active a,
+.dashboard nav li.active i {
+    color: #fff;
+}
+.dashboard nav li i,
+.dashboard nav li a {
+    transition: color 0.3s ease-in-out;
+}
+.dashboard nav li:hover i,
+.dashboard nav li:hover a {
+    color: #fff;
+}
+.dashboard nav li:hover::after {
+    transform: scaleX(100%);
+}
+/* end dashboard */
+
+/* start main-content */
+.main-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.main-container div {
+    width: 210px;
+    background-color: var(--secondColor);
+    padding: 30px;
+    text-align: center;
+    line-height: 2;
+}
+.main-container > div:first-child i:first-of-type {
+    color: gold;
+}
+.main-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 60px;
+}
+.main-container > div {
+    position: relative;
+}
+.main-container > div::after,
+.main-container > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.main-container > div::after {
+    border-left: 2px solid var(--blackColor);
+    border-right: 2px solid var(--blackColor);
+    transform: scaleY(0);
+    transition: transform 0.3s ease-in-out;
+}
+.main-container > div::before {
+    border-top: 2px solid var(--blackColor);
+    border-bottom: 2px solid var(--blackColor);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s 0.3s ease-in-out;
+
+}
+.main-container > div:hover::after {
+    transform: scaleY(100%);
+}
+.main-container > div:hover::before {
+    transform: scaleX(100%);
+}
+/* end main-content */
+
+
+/* start user progress */
+.user-container > div:first-child {
+    text-align: center;
+}
+.user-container div:first-child .img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+.user-container div:first-child .img img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.user-container > div:first-child p {
+    font-weight: bold;
+}
+.user-container > div:not(:first-child) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;    
+}
+.user-container i {
+    font-size: 24px;
+}
+.user-container > div:not(:first-child) > div:nth-child(2) {
+    margin-left: 10px;
+}
+.user-container > div:not(:first-child) > div:nth-child(2) > div {
+    display: inline-block;
+    width: 120px;
+    padding: 5px;
+    background-color: var(--secondColor);
+    background-color: #e8e8e8;
+    position: relative;
+    border-radius: 50px;
+}
+.user-container > div:not(:first-child) > div:nth-child(2) > div span {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    background-color: var(--mainColor);
+    border-radius: 50px;
+}
+.user-container > div:nth-child(2) > div:nth-child(2) span {
+    width: 75%;
+}
+.user-container > div:nth-child(3) > div:nth-child(2) span {
+    width: 50%;
+}
+.user-container > div:not(:nth-child(1),:nth-child(2),:nth-child(3)) > div:nth-child(2) > div span {
+    width: 25%;
+}
+/* end user progress */
